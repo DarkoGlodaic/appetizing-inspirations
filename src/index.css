@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+
+.header > img {
+  width: 45px;
+  margin-right: 10px;
+  position: relative;
+  top: -2px
+}
+
+.header > h1 {
+  font-size: 2rem;
+  font-weight: 400;
+}
