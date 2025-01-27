@@ -21,10 +21,47 @@ body {
 .header > img {
   width: 45px;
   position: relative;
-  top: -2px
+  bottom: 2px
 }
 
 .header > h1 {
   font-size: 2rem;
   font-weight: 400;
+}
+
+main {
+  padding: 50px 20px 10px;
+}
+
+.ingredient-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  height: 40px;
+}
+
+.ingredient-form > input {
+  border-radius: 7px;
+  border: 1px solid #dbd9cf;
+  padding: 9px 13px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+  flex-grow: 1;
+  min-width: 50px;
+  max-width: 400px;
+}
+
+.ingredient-form > button {
+  font-family: Inter, sans-serif;
+  background-color: rgb(2, 2, 1);
+  color: white;
+  border-radius: 6px;
+  border-color: rgb(104, 102, 91);
+  width: 160px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.ingredient-form > button::before {
+  content: "+";
+  margin-right: 4px;
 }
