@@ -1,19 +1,16 @@
 import { useState } from 'react';
+import React from 'react';
 
 export default function Main() {
-
     // State for our ingredient list
     const [ingredients, setIngredients] = useState([])
 
     const listIngredients = ingredients.map(ingredient => (
     <li key={ingredient}>{ingredient}</li>
+    
     ))
 
-    function handleSubmit(event) {
-        // Disables form submit refreshing the page
-        event.preventDefault()
-        // Gets ingredient entered in form
-        const formData = new FormData(event.currentTarget)
+    function handleSubmit(formData) {
         const newIngredient = formData.get("ingredient")
         // Updates ingredient array with newIngredient
         setIngredients(prevIngredientList => [...prevIngredientList, newIngredient])
@@ -24,7 +21,7 @@ export default function Main() {
         <main>
             <form 
             className="ingredient-form"
-            onSubmit={handleSubmit}
+            action={handleSubmit}
             >
                 <input
                     aria-label="Add ingredient"
