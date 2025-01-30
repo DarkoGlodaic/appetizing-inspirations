@@ -10,18 +10,17 @@ export default function Main() {
     
     ))
 
-    function handleSubmit(formData) {
+    function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
         // Updates ingredient array with newIngredient
         setIngredients(prevIngredientList => [...prevIngredientList, newIngredient])
-        console.log(ingredients)
     }
     
     return (
         <main>
             <form 
             className="ingredient-form"
-            action={handleSubmit}
+            action={addIngredient}
             >
                 <input
                     aria-label="Add ingredient"
@@ -32,9 +31,17 @@ export default function Main() {
                 />
                 <button>Add ingredient</button>
             </form>
-            <ul>
-                {listIngredients}
-            </ul>
+            {ingredients.length > 0 ? <section className='ingredient-container'>
+                <h2>Ingredients on hand:</h2>
+                <ul className="ingredient-list">{listIngredients}</ul>
+                {ingredients.length > 3 ? <div  className="get-recipe-container">
+                    <div>
+                        <h3>Ready for a recipe?</h3>
+                        <p>Generate a recipe from your list of ingredients.</p>
+                    </div>
+                    <button>Get a recipe</button>
+                </div> : null}
+            </section> : null}
         </main>
     )
 }
