@@ -75,9 +75,9 @@ main {
   line-height: 30px;
 }
 .ingredient-container {
+  padding: 5px 20px;
   margin: 0 auto;
   max-width: 800px;
-  padding: 5px 20px;
 }
 
 .get-recipe-container {
@@ -111,4 +111,10 @@ main {
   font-family: Inter, sans-serif;
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+.suggested-recipe-container {
+  margin: 40px auto;
+  align-items: center;
+  max-width: 900px;
 }
