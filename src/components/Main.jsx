@@ -1,25 +1,20 @@
 import { useState } from 'react';
-import React from 'react';
 import IngredientsList from '../components/IngredientsList'
 import Recipe from '../components/Recipe.jsx'
 
 export default function Main() {
     // State for our ingredient list
-    const [ingredients, setIngredients] = useState([])
+    const [ingredients, setIngredients] = useState(["eggs", "tomatoes", "cucumber"])
     const [recipeReceived, setRecipeReceived] = useState(false)
 
-    const listIngredients = ingredients.map(ingredient => (
-    <li key={ingredient}>{ingredient}</li>
-    
-    ))
-
+    // Handles adding ingredients to ingredient list
     function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
         // Updates ingredient array with newIngredient
         setIngredients(prevIngredientList => [...prevIngredientList, newIngredient])
     }
     
-    
+    // Gets called by Ingredient list when "Get a recipe" is clicked
     function receiveRecipe() {
         setRecipeReceived(prevReceived => !prevReceived)
     }
@@ -39,17 +34,8 @@ export default function Main() {
                 />
                 <button>Add ingredient</button>
             </form>
-            {ingredients.length > 0 ? <section className='ingredient-container'>
-                <h2>Ingredients on hand:</h2>
-                <ul className="ingredient-list">{listIngredients}</ul>
-                {ingredients.length > 3 ? <div  className="get-recipe-container">
-                    <div>
-                        <h3>Ready for a recipe?</h3>
-                        <p>Generate a recipe from your list of ingredients.</p>
-                    </div>
-                    <button onClick={receiveRecipe}>Get a recipe</button>
-                </div> : null}
-            </section> : null}
+
+            <IngredientsList ingredients={ingredients} receiveRecipe={receiveRecipe}/>
             <Recipe recipeReceived={recipeReceived}/>
         </main>
     )
