@@ -67,7 +67,7 @@ main {
 }
 
 .ingredient-list {
-  margin-bottom: 48px;
+  margin-bottom: 38px;
 }
 
 .ingredient-list > li {
@@ -114,7 +114,13 @@ main {
 }
 
 .suggested-recipe-container {
+  color: #2d3542;
   margin: 40px auto;
   align-items: center;
   max-width: 900px;
+  font-weight: 400;
+}
+
+.suggested-recipe-container ul li, .suggested-recipe-container ol li {
+  margin-bottom: 8px;
 }

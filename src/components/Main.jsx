@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import IngredientsList from '../components/IngredientsList'
 import Recipe from '../components/Recipe.jsx'
+import { getRecipeFromClaude } from '../ai.js';
 
 export default function Main() {
     // State for our ingredient list
-    const [ingredients, setIngredients] = useState(["eggs", "tomatoes", "cucumber"])
-    const [recipeReceived, setRecipeReceived] = useState(false)
+    const [ingredients, setIngredients] = useState([])
+    const [recipe, setRecipe] = useState(false)
+
+    // Used for scrolling to recipe container after being received from API
+    const recipeRef = useRef(null)
 
     // Handles adding ingredients to ingredient list
     function addIngredient(formData) {
@@ -15,9 +19,18 @@ export default function Main() {
     }
     
     // Gets called by Ingredient list when "Get a recipe" is clicked
-    function receiveRecipe() {
-        setRecipeReceived(prevReceived => !prevReceived)
+    const getRecipe = async () => {
+        const recipeMarkdown = await getRecipeFromClaude(ingredients)
+        setRecipe(recipeMarkdown)
     }
+
+    // Use effect to scroll to the recipe once it's set
+    useEffect(() => {
+        if (recipe && recipeRef.current) {
+        // This ensures scroll only happens after the new element is rendered
+        recipeRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [recipe]); // This effect runs every time receivedRecipe changes
 
     return (
         <main>
@@ -35,8 +48,8 @@ export default function Main() {
                 <button>Add ingredient</button>
             </form>
 
-            <IngredientsList ingredients={ingredients} receiveRecipe={receiveRecipe}/>
-            {recipeShown && <Recipe recipeReceived/>}
+            <IngredientsList ingredients={ingredients} getRecipe={getRecipe}/>
+            {recipe && <div ref={recipeRef}><Recipe recipeRef={recipeRef} recipe={recipe}/></div>}
         </main>
     )
 }
