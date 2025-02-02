@@ -74,6 +74,13 @@ main {
   color: #2d3542;
   line-height: 30px;
 }
+
+.ingredient-list > li:hover {
+  cursor: pointer; /* Makes it obvious that the item is clickable */
+  text-decoration: line-through; /* Adds strikethrough on hover */
+  color: grey;
+}
+
 .ingredient-container {
   padding: 5px 20px;
   margin: 0 auto;

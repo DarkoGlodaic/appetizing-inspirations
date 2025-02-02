@@ -7,6 +7,7 @@ export default function Main() {
     // State for our ingredient list
     const [ingredients, setIngredients] = useState([])
     const [recipe, setRecipe] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     // Used for scrolling to recipe container after being received from API
     const recipeRef = useRef(null)
@@ -17,11 +18,18 @@ export default function Main() {
         // Updates ingredient array with newIngredient
         setIngredients(prevIngredientList => [...prevIngredientList, newIngredient])
     }
+
+    // Handles removing ingredients from ingredient list
+    const removeIngredient = (index) => {
+        setIngredients((prevIngredientList => prevIngredientList.filter((_, i) => i !== index)))
+    }
     
     // Gets called by Ingredient list when "Get a recipe" is clicked
     const getRecipe = async () => {
+        setLoading(true) // Set loading to true before starting the API call
         const recipeMarkdown = await getRecipeFromClaude(ingredients)
-        setRecipe(recipeMarkdown)
+        setRecipe(recipeMarkdown) // Update receivedRecipe with the fetched recipe
+        setLoading(false)
     }
 
     // Use effect to scroll to the recipe once it's set
@@ -48,7 +56,12 @@ export default function Main() {
                 <button>Add ingredient</button>
             </form>
 
-            <IngredientsList ingredients={ingredients} getRecipe={getRecipe}/>
+            <IngredientsList 
+                ingredients={ingredients}
+                getRecipe={getRecipe}
+                loading={loading}
+                removeIngredient={removeIngredient}    
+            />
             {recipe && <div ref={recipeRef}><Recipe recipeRef={recipeRef} recipe={recipe}/></div>}
         </main>
     )
