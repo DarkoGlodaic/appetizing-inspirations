@@ -1,6 +1,6 @@
 export default function Recipe(props) {
     return (
-        props.recipeReceived ? <section className="suggested-recipe-container">
+        <section className="suggested-recipe-container">
             <h2>The Chef Recommends:</h2>
             <article aria-live="polite">
                 <p>Based on the ingredients you have available, I would recommend making a simple a delicious <strong>Beef Bolognese Pasta</strong>. Here is the recipe:</p>
@@ -31,6 +31,6 @@ export default function Recipe(props) {
                     <li>Serve hot, garnished with additional fresh basil or grated Parmesan cheese if desired.</li>
                 </ol>
             </article>
-        </section> : null
+        </section>
     )
 }

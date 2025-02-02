@@ -36,7 +36,7 @@ export default function Main() {
             </form>
 
             <IngredientsList ingredients={ingredients} receiveRecipe={receiveRecipe}/>
-            <Recipe recipeReceived={recipeReceived}/>
+            {recipeShown && <Recipe recipeReceived/>}
         </main>
     )
 }
