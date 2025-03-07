@@ -60,9 +60,10 @@ export default function Main() {
                 ingredients={ingredients}
                 getRecipe={getRecipe}
                 loading={loading}
-                removeIngredient={removeIngredient}    
+                removeIngredient={removeIngredient} 
+                ref = {recipeRef}   
             />
-            {recipe && <div ref={recipeRef}><Recipe recipeRef={recipeRef} recipe={recipe}/></div>}
+            {recipe && <div><Recipe recipe={recipe}/></div>}
         </main>
     )
 }
